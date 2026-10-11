@@ -1,102 +1,138 @@
-# Nexus — AI-Powered Technology Information Assistant
+# Nexus — GenAI-Powered Smartphone Specification Assistant
 
-Nexus is a Python-based, command-line AI assistant designed to help users explore technology-related topics, including smartphones, laptops, processors, GPUs, computer components, operating systems, and consumer electronics.
+Nexus is a **Generative AI (GenAI) project** designed to help users find smartphone specifications through a conversational command-line interface.
 
-The project combines a local Large Language Model (LLM) with web-based information retrieval and Retrieval-Augmented Generation (RAG) to support technology question answering.
+The project combines Large Language Models (LLMs), web-based information retrieval, and Retrieval-Augmented Generation (RAG) techniques to support smartphone-related question answering.
 
-## Features
+Its primary goal is to retrieve relevant smartphone information and present specifications clearly, with particular emphasis on four essential areas:
 
-- **AI-powered conversations:** Uses Ollama to run a local language model.
-- **Technology assistance:** Answers questions about consumer technology and computer hardware.
-- **Web research:** Includes web-search and research components for retrieving online information.
-- **Smartphone specifications:** Provides a dedicated module for retrieving smartphone specification information.
-- **Retrieval-Augmented Generation (RAG):** Uses a local knowledge base and FAISS-based vector search to retrieve relevant information.
-- **Modular architecture:** Separates the chatbot, research tools, smartphone specification logic, and knowledge retrieval components.
+- **Display** — screen technology, size, resolution, refresh rate, and other available display details.
+- **Processor** — chipset and processor-related information.
+- **Camera** — rear and front camera specifications and supported features.
+- **Battery & Charging** — battery capacity, charging speed, and supported charging features.
+
+Nexus is built with Python and uses Ollama for local language-model execution.
+
+## Key Features
+
+- **GenAI-Powered Conversations:** Uses a large language model to provide natural-language responses to smartphone-related queries.
+- **Smartphone Specification Retrieval:** Includes a dedicated module for retrieving smartphone specifications.
+- **Web Research:** Uses web-based research capabilities to find smartphone information.
+- **Retrieval-Augmented Generation (RAG):** Includes components for retrieving relevant information from a knowledge base.
+- **Semantic Search:** Uses embeddings and FAISS for vector-based information retrieval.
+- **Core Specification Focus:** Prioritizes display, processor, camera, and battery and charging information.
+- **Modular Architecture:** Separates the assistant logic, smartphone specification retrieval, web research, and RAG functionality into individual modules.
+- **Local LLM Integration:** Uses Ollama to run the configured language model locally.
+
+## How It Works
+
+1. **User Query:** The user asks about a smartphone, its specifications, or a comparison.
+2. **Query Processing:** Nexus processes the query and identifies the relevant smartphone or information request.
+3. **Information Retrieval:** The relevant workflow retrieves information from available web sources or the local knowledge base.
+4. **Response Generation:** The LLM helps organize the retrieved context into a readable response.
+5. **Specification Presentation:** Nexus presents the available smartphone information, prioritizing display, processor, camera, and battery and charging details.
+
+The information retrieval path depends on the query and the modules configured for that workflow.
 
 ## Technologies Used
 
-- Python
-- Ollama
-- Large Language Models (LLMs)
-- Retrieval-Augmented Generation (RAG)
-- FAISS
-- NumPy
-- Beautiful Soup
-- Requests
+| Technology | Purpose |
+|---|---|
+| Generative AI and LLMs | Natural-language response generation |
+| Ollama | Local LLM execution |
+| Retrieval-Augmented Generation (RAG) | Retrieval-supported question answering |
+| FAISS | Vector similarity search |
+| Embeddings | Semantic representation of text |
+| Python | Application logic and integration |
+| NumPy | Numerical operations on embeddings |
+| Requests | HTTP requests for information retrieval |
+| Beautiful Soup | HTML parsing and data extraction |
 
 ## Project Structure
 
-| File | Purpose |
-|---|---|
-| `app.py` | Command-line chatbot interface |
-| `agent.py` | AI agent and query-handling logic |
-| `phone_specs.py` | Smartphone specification retrieval |
-| `you_search_tool.py` | Web-search functionality |
-| `web_research.py` | Web research utilities |
-| `verifier.py` | Verification-related logic |
-| `tools.py` | Knowledge retrieval tools |
-| `nexus_rag.py` | RAG functionality |
-| `vector_search.py` | Vector search functionality |
-| `requirements.txt` | Python dependency list |
-| `.gitignore` | Excludes selected local and sensitive files |
+```text
+Nexus/
+├── agent.py                  # Assistant logic and tool orchestration
+├── app.py                    # Command-line chat interface
+├── phone_specs.py            # Smartphone specification retrieval
+├── tools.py                  # Tool-related functionality
+├── you_search_tool.py        # Web search functionality
+├── web_research.py           # Web research logic
+├── verifier.py               # Verification-related functionality
+├── nexus_rag.py              # RAG functionality
+├── vector_search.py          # Vector-based retrieval
+├── build_concept_rag.py      # RAG data preparation
+├── build_rag_dataset.py      # RAG dataset construction
+├── chunk_word.py             # Text chunking
+├── structured_chunks.py      # Structured text processing
+├── create_embeddings.py      # Embedding generation
+├── create_vector_db.py       # Vector index creation
+├── requirements.txt          # Python dependencies
+└── .gitignore                # Git exclusions
+```
 
-Additional scripts support dataset preparation, document chunking, embedding generation, and vector database creation.
-
-## Prerequisites
-
-- Python installed on your computer
-- Ollama installed and running locally
-- The language model required by the application
-- Any API credentials required by the configured web-search provider
+Additional datasets, knowledge files, and generated vector indexes may be required for the corresponding retrieval workflows.
 
 ## Getting Started
 
-### 1. Clone the repository
+### Prerequisites
+
+- Python
+- Ollama
+- The language model configured by the application
+- Any required data files and retrieval assets
+
+### 1. Clone the Repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone https://github.com/YOUR-USERNAME/Nexus-AI-Tech-Assistant.git
 cd Nexus-AI-Tech-Assistant
 ```
 
-Replace `YOUR_GITHUB_REPOSITORY_URL` with the HTTPS URL of this repository.
+Replace `YOUR-USERNAME` with your GitHub username.
 
-### 2. Install the dependencies
+### 2. Install Dependencies
 
 ```bash
-python -m pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
-### 3. Set up Ollama
-
-Install Ollama from [https://ollama.com/](https://ollama.com/) and download the model used by the application:
+### 3. Download the Language Model
 
 ```bash
 ollama pull qwen3.5:4b
 ```
 
-Ensure Ollama is running before starting the chatbot.
+Ensure Ollama is running before starting a workflow that uses the local model.
 
-### 4. Configure environment variables
-
-If the application requires API keys, create a local `.env` file and configure the variables expected by the project.
-
-**Do not publish your `.env` file or API keys to GitHub.**
-
-### 5. Run the command-line chatbot
+### 4. Run the Command-Line Interface
 
 ```bash
 python app.py
 ```
 
-Enter a technology-related question at the `You:` prompt. Type `exit` or `quit` to stop the conversation.
+Enter a question in the terminal to interact with the basic chat interface. Type `exit` or `quit` to end the session.
 
-## Project Goals
+Other modules may require their own configuration or execution steps.
 
-Nexus explores the practical integration of local language models, web research, and retrieval-based question answering in a technology-focused assistant.
+## Security
 
-## Current Scope
+- Never commit API keys, passwords, tokens, or `.env` files.
+- Keep secrets in local environment variables or a `.env` file excluded by `.gitignore`.
+- Configure any required external-service credentials locally.
 
-Nexus is a command-line application intended to run locally. It is not currently presented as a publicly deployed web application.
+## Project Status
+
+- **Category:** Generative AI
+- **Domain:** Smartphone specifications
+- **Interface:** Command-line
+- **LLM:** Ollama
+- **Core components:** LLM-based responses, web research, RAG, and vector retrieval
+- **Deployment:** Local execution; no public application deployment is claimed
+
+## Project Objective
+
+Nexus explores how Generative AI can be combined with web research and information retrieval to build a smartphone-focused assistant. The project emphasizes retrieving relevant specifications and presenting them clearly, with particular attention to display, processor, camera, and battery and charging information.
 
 ## Future Improvements
 
@@ -104,6 +140,4 @@ Nexus is a command-line application intended to run locally. It is not currently
 - Enhance the user interface and overall user experience.
 - Expand the knowledge base and automated testing.
 
-## Author
-
-Developed as a personal AI/ML project to explore practical applications of LLMs, web retrieval, and RAG.
+**Nexus — A GenAI-powered assistant for smartphone specifications.**
