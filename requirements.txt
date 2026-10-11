@@ -1,0 +1,6 @@
+requests
+beautifulsoup4
+ollama
+numpy
+faiss-cpu
+python-dotenv
